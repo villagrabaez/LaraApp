@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -25,7 +26,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return ['message' => 'I have your data'];
+        // return $request->all();
+
+        return User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'bio' => $request['bio'],
+            'type' => $request['type'],
+            'photo' => $request['photo'],
+            'password' => bcrypt($request['password']),
+        ]);
     }
 
     /**
