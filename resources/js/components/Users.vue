@@ -135,6 +135,7 @@
       createUser() {
         this.$Progress.start();
         this.form.post('api/user');
+        Fire.$emit('AfterCreate');
         $('#addModal').modal('hide')
         swal("Good job!", "User created successfull!", "success");
         this.$Progress.finish();
@@ -144,6 +145,12 @@
       this.loadUsers();
       // Enviar un request cada 3seg.
       setInterval(() => this.loadUsers(), 3000);
+
+      // INVESTIGAR
+
+      // Fire.$on('AfterCreate', () => {
+      //   this.loadUsers();
+      // });
     }
   }
 </script>
