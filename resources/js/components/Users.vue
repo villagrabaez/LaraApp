@@ -133,7 +133,11 @@
         axios.get('api/user').then(({ data }) => (this.users = data.data));
       },
       createUser() {
+        this.$Progress.start();
         this.form.post('api/user');
+        $('#addModal').modal('hide')
+        swal("Good job!", "User created successfull!", "success");
+        this.$Progress.finish();
       }
     },
     created() {

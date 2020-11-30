@@ -10,6 +10,9 @@ window.Vue = require('vue');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 
+import swal from 'sweetalert';
+window.swal = swal;
+
 window.Form = Form;
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
@@ -17,6 +20,24 @@ Vue.component(AlertError.name, AlertError);
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
+
+import VueProgressBar from 'vue-progressbar';
+
+const options = {
+    color: '#bffaf3',
+    failedColor: '#874b4b',
+    thickness: '5px',
+    transition: {
+      speed: '0.2s',
+      opacity: '0.6s',
+      termination: 300
+    },
+    autoRevert: true,
+    location: 'left',
+    inverse: false
+  }
+
+Vue.use(VueProgressBar, options);
 
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
