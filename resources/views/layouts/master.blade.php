@@ -228,7 +228,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 document.getElementById('logout-form').submit();"
               >
                 <i class="nav-icon text-red fas fa-power-off"></i>
-                {{ __('Logout') }}
+                <p>{{ __('Logout') }}</p>
               </a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -249,6 +249,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="content">
         <div class="container-fluid">
           <router-view></router-view>
+          <vue-progress-bar></vue-progress-bar>
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content -->

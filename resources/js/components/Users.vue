@@ -29,8 +29,8 @@
                   <td>{{ user.id }}</td>
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
-                  <td>{{ user.type }}</td>
-                  <td>{{ user.created_at }}</td>
+                  <td>{{ user.type | upText }}</td>
+                  <td>{{ user.created_at | myDate }}</td>
                   <td>
                     <a href="#">Edit 
                       <i class="text-yellow fa fa-edit"></i>
@@ -133,11 +133,30 @@
         axios.get('api/user').then(({ data }) => (this.users = data.data));
       },
       createUser() {
-        this.form.post('api/user');
+        this.$Progress.start();
+        this.form.post('api/user')
+        .then(() => {
+                  // Fire.$emit('AfterCreate');
+
+          $('#addModal').modal('hide')
+          swal("Good job!", "User created successfull!", "success");
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+        this.$Progress.finish();
       }
     },
     created() {
       this.loadUsers();
+      // Enviar un request cada 3seg.
+      setInterval(() => this.loadUsers(), 3000);
+
+      // INVESTIGAR
+
+      // Fire.$on('AfterCreate', () => {
+      //   this.loadUsers();
+      // });
     }
   }
 </script>
