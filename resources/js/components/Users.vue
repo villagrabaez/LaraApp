@@ -134,10 +134,16 @@
       },
       createUser() {
         this.$Progress.start();
-        this.form.post('api/user');
-        Fire.$emit('AfterCreate');
-        $('#addModal').modal('hide')
-        swal("Good job!", "User created successfull!", "success");
+        this.form.post('api/user')
+        .then(() => {
+                  // Fire.$emit('AfterCreate');
+
+          $('#addModal').modal('hide')
+          swal("Good job!", "User created successfull!", "success");
+        })
+        .catch((error) => {
+          console.error(error);
+        })
         this.$Progress.finish();
       }
     },
