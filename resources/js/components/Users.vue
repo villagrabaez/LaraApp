@@ -142,6 +142,8 @@
     },
     created() {
       this.loadUsers();
+      // Enviar un request cada 3seg.
+      setInterval(() => this.loadUsers(), 3000);
     }
   }
 </script>

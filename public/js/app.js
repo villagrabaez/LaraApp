@@ -2173,7 +2173,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.loadUsers();
+    var _this2 = this;
+
+    this.loadUsers(); // Enviar un request cada 3seg.
+
+    setInterval(function () {
+      return _this2.loadUsers();
+    }, 3000);
   }
 });
 
